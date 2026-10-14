@@ -1,0 +1,463 @@
+@{
+    ViewData["Title"] = "Teooria";
+    // Teemad 1–12 Moodle'i kursuse „Programmeerimine I“ sektsioonist „Matemaatika“.
+    // Valemid: <span class="tex">…</span> (reas) ja <div class="tex blokk">…</div> (eraldi real) – joonistab KaTeX allpool.
+}
+
+<h1>Teooria</h1>
+<p class="vaike">Jadade ja funktsioonide uurimise teooria kursuse „Matemaatika“ teemade 1–12 põhjal. Iga teema juures on nupp,
+    mis avab näite funktsiooni rakenduses – sealt näed graafikut ja kõiki vastuseid koos lahenduskäikudega.</p>
+
+<nav class="sisukord" aria-label="Teemad">
+    <a href="#t1">1. Aritmeetiline ja geomeetriline jada</a>
+    <a href="#t2">2. Jada piirväärtus</a>
+    <a href="#t3">3. Funktsiooni mõiste</a>
+    <a href="#t4">4. Määramis- ja muutumispiirkond</a>
+    <a href="#t5">5. Paaris ja paaritu</a>
+    <a href="#t6">6. Nullkohad, X⁺ ja X⁻</a>
+    <a href="#t7">7. Kasvamine, kahanemine, ekstreemumid</a>
+    <a href="#t8">8. Funktsiooni uurimine</a>
+    <a href="#t9">9. Tuletis</a>
+    <a href="#t10">10. Puutuja ja normaal</a>
+    <a href="#t11">11. Uurimine tuletise abil</a>
+    <a href="#t12">12. Ekstreemumülesanded</a>
+</nav>
+
+<div class="teemad">
+
+<section class="kaart teema" id="t1">
+    <h2><span class="teema-nr">1</span> Aritmeetiline ja geomeetriline jada</h2>
+
+    <h3>Aritmeetiline jada</h3>
+    <p class="maaratlus"><b>Definitsioon.</b> Aritmeetiliseks jadaks nimetatakse jada, kus iga liikme ja tema eelneva liikme
+        vahe on (alates teisest liikmest) konstantne. Seda vahet nimetatakse jada vaheks <span class="tex">d</span>.</p>
+    <div class="kaks-veergu">
+        <div>
+            <p>Üldliikme valem:</p>
+            <div class="tex blokk">a_n = a_1 + (n - 1)\,d</div>
+        </div>
+        <div>
+            <p>Esimese <span class="tex">n</span> liikme summa:</p>
+            <div class="tex blokk">S_n = \frac{a_1 + a_n}{2}\cdot n = \frac{2a_1 + (n - 1)d}{2}\cdot n</div>
+        </div>
+    </div>
+    <p class="vaike"><span class="tex">a_n</span> – n-s liige, <span class="tex">a_1</span> – esimene liige,
+        <span class="tex">d</span> – jada vahe, <span class="tex">n</span> – liikme järjekorranumber.</p>
+    <p class="naide-pealkiri">Näited</p>
+    <ul>
+        <li>Jada 1; 5; 9; 13; … 20. liige: <span class="tex">a_1 = 1</span>, <span class="tex">d = 4</span>,
+            <span class="tex">a_{20} = 1 + 19\cdot 4 = 77</span>.</li>
+        <li>Kas jadas 8; 5; 2; … esinevad −40 ja 0? <span class="tex">a_n = 8 - 3(n - 1)</span>:
+            <span class="tex">-40</span> on 17. liige, <span class="tex">0</span> ei esine
+            (<span class="tex">n - 1 = \frac{8}{3}</span> pole täisarv).</li>
+        <li><span class="tex">a_7 = 15</span>, <span class="tex">a_{15} = 7</span>: lahutades
+            <span class="tex">8d = -8</span>, seega <span class="tex">d = -1</span>, <span class="tex">a_1 = 21</span>
+            – jada 21; 20; 19; 18; …</li>
+        <li>Summa <span class="tex">1 + 2 + \dots + n = \frac{n(n + 1)}{2}</span>; kõigi 100-st väiksemate paaritute
+            naturaalarvude summa: <span class="tex">n = \frac{99 - 1}{2} + 1 = 50</span>,
+            <span class="tex">S_{50} = \frac{1 + 99}{2}\cdot 50 = 2500</span>.</li>
+    </ul>
+
+    <h3>Geomeetriline jada</h3>
+    <p class="maaratlus"><b>Definitsioon.</b> Geomeetriliseks jadaks nimetatakse jada, kus iga liikme ja eelneva liikme
+        jagatis on (alates teisest liikmest) konstantne. Seda jagatist nimetatakse jada teguriks <span class="tex">q</span>.</p>
+    <div class="kaks-veergu">
+        <div>
+            <p>Üldliikme valem:</p>
+            <div class="tex blokk">a_n = a_1\cdot q^{\,n-1}</div>
+        </div>
+        <div>
+            <p>Esimese <span class="tex">n</span> liikme summa:</p>
+            <div class="tex blokk">S_n = a_1\cdot\frac{q^n - 1}{q - 1},\quad q \ne 1</div>
+        </div>
+    </div>
+    <p>Hääbuva geomeetrilise jada (<span class="tex">|q| &lt; 1</span>) summa: <span class="tex">S = \frac{a_1}{1 - q}</span>.</p>
+    <p class="naide-pealkiri">Näited</p>
+    <ul>
+        <li>Jada 1; 3; 9; … 6. liige: <span class="tex">a_6 = 1\cdot 3^5 = 243</span>.</li>
+        <li><span class="tex">a_1 = 81</span>, <span class="tex">a_5 = 16</span>:
+            <span class="tex">q^4 = \frac{16}{81}</span>, seega <span class="tex">q = \pm\frac{2}{3}</span> – sobivad
+            jadad 81; 54; 36; 24; 16; … ja 81; −54; 36; −24; 16; …</li>
+        <li>Koolerapisik jaguneb iga poole tunni järel kaheks: <span class="tex">a_1 = 1</span>,
+            <span class="tex">q = 2</span>, 5 tunni pärast <span class="tex">a_{11} = 2^{10} = 1024</span> pisikut.</li>
+        <li>Jada 5; 15; 45; … 7 liikme summa: <span class="tex">S_7 = 5\cdot\frac{3^7 - 1}{3 - 1} = 5465</span>.</li>
+        <li>Jada 32; 16; 8; … 10 liikme summa: <span class="tex">S_{10} = 32\cdot\frac{(1/2)^{10} - 1}{1/2 - 1} = 63\tfrac{15}{16}</span>.</li>
+    </ul>
+</section>
+
+<section class="kaart teema" id="t2">
+    <h2><span class="teema-nr">2</span> Jada piirväärtus</h2>
+    <p class="maaratlus"><b>Definitsioon.</b> Arvu <span class="tex">A</span> nimetatakse jada <span class="tex">(a_n)</span>
+        piirväärtuseks, kui iga positiivse arvu <span class="tex">\varepsilon</span> jaoks leidub järjenumber
+        <span class="tex">m</span>, millest alates jada liikmed erinevad arvust <span class="tex">A</span> vähem kui
+        <span class="tex">\varepsilon</span> võrra: <span class="tex">|a_n - A| &lt; \varepsilon</span>, kui
+        <span class="tex">n \ge m</span>. Kirjutatakse <span class="tex">\lim_{n\to\infty} a_n = A</span>.</p>
+
+    <div class="kaks-veergu">
+        <div>
+            <h3>Põhilised piirväärtused</h3>
+            <ul class="valemiloend">
+                <li><span class="tex">\lim_{n\to\infty} n = \infty</span>, <span class="tex">\lim_{n\to\infty} (-n) = -\infty</span></li>
+                <li><span class="tex">\lim_{n\to\infty} c = c</span></li>
+                <li><span class="tex">\lim_{n\to\infty} \frac{1}{n} = 0</span></li>
+                <li><span class="tex">\lim_{n\to\infty} (c\cdot a_n) = c\cdot\lim_{n\to\infty} a_n</span></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Omadused</h3>
+            <p class="vaike">Kui <span class="tex">\lim a_n = A</span> ja <span class="tex">\lim b_n = B</span> (lõplikud), siis</p>
+            <ul class="valemiloend">
+                <li><span class="tex">\lim (a_n \pm b_n) = A \pm B</span></li>
+                <li><span class="tex">\lim (a_n\cdot b_n) = A\cdot B</span></li>
+                <li><span class="tex">\lim \frac{a_n}{b_n} = \frac{A}{B}</span>, kui <span class="tex">B \ne 0</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="naide-pealkiri">Määramatus <span class="tex">\frac{\infty}{\infty}</span>: jaga lugeja ja nimetaja suurima astmega</p>
+    <div class="tex blokk">\lim_{n\to\infty}\frac{6n - 5}{2n + 3} = \lim_{n\to\infty}\frac{n\left(6 - \frac{5}{n}\right)}{n\left(2 + \frac{3}{n}\right)} = \frac{6 - 0}{2 + 0} = 3</div>
+    <div class="tex blokk">\lim_{n\to\infty}\frac{7}{n^2 - 5} = \lim_{n\to\infty}\frac{\frac{7}{n^2}}{1 - \frac{5}{n^2}} = \frac{0}{1 - 0} = 0</div>
+
+    <p class="naide-pealkiri">Määramatus <span class="tex">\infty - \infty</span>: korruta kaaskorrutisega</p>
+    <div class="tex blokk">\lim_{n\to\infty}\left(\sqrt{n + 1} - \sqrt{n}\right) = \lim_{n\to\infty}\frac{(n + 1) - n}{\sqrt{n + 1} + \sqrt{n}} = \lim_{n\to\infty}\frac{1}{\sqrt{n + 1} + \sqrt{n}} = 0</div>
+
+    <h3>Abivalemid</h3>
+    <div class="kaks-veergu">
+        <ul class="valemiloend">
+            <li><span class="tex">(a \pm b)^2 = a^2 \pm 2ab + b^2</span></li>
+            <li><span class="tex">(a \pm b)^3 = a^3 \pm 3a^2b + 3ab^2 \pm b^3</span></li>
+            <li><span class="tex">a^2 - b^2 = (a - b)(a + b)</span></li>
+        </ul>
+        <ul class="valemiloend">
+            <li><span class="tex">a^3 - b^3 = (a - b)(a^2 + ab + b^2)</span></li>
+            <li><span class="tex">a^3 + b^3 = (a + b)(a^2 - ab + b^2)</span></li>
+            <li><span class="tex">a^2 + b^2 = (a + b)^2 - 2ab</span></li>
+        </ul>
+    </div>
+    <p>Sama idee kehtib funktsioonide puhul: <span class="tex">\lim_{x\to\infty}\frac{6x - 5}{2x + 3} = 3</span>, seega
+        funktsiooni <span class="tex">y = \frac{6x - 5}{2x + 3}</span> graafikul on horisontaalne asümptoot
+        <span class="tex">y = 3</span>.</p>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="(6*x - 5)/(2*x + 3)">Proovi: y = (6x − 5)/(2x + 3)</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t3">
+    <h2><span class="teema-nr">3</span> Funktsiooni mõiste ja esitusviisid</h2>
+    <p>Muutujat, millele võime ise anda teatud hulgast vabalt valitud väärtusi, nimetatakse <b>sõltumatuks muutujaks</b>
+        (argumendiks). Muutujat, mille väärtused leitakse vastavalt sõltumatu muutuja väärtusele, nimetatakse
+        <b>sõltuvaks muutujaks</b>. Näiteks funktsioonis <span class="tex">y = 2x + 3</span> on sõltumatu muutuja
+        <span class="tex">x</span> ja sõltuv muutuja <span class="tex">y</span>; funktsioonis
+        <span class="tex">v = \frac{30}{t}</span> on need <span class="tex">t</span> ja <span class="tex">v</span>.</p>
+    <p class="maaratlus"><b>Definitsioon.</b> Seost, milles iga sõltumatu muutuja <span class="tex">x</span> väärtusele
+        vastab <b>üks kindel</b> sõltuva muutuja <span class="tex">y</span> väärtus, nimetatakse <b>funktsiooniks</b>.</p>
+    <p>Funktsiooni kirjutatakse kujul <span class="tex">y = f(x)</span> (loe: „y võrdub f kohal x“).
+        Kirjutis <span class="tex">f(a)</span> tähistab funktsiooni väärtust kohal <span class="tex">x = a</span>:
+        kui <span class="tex">f(x) = 2x + 3</span>, siis <span class="tex">f(2) = 2\cdot 2 + 3 = 7</span>.</p>
+
+    <h3>Esitusviisid</h3>
+    <dl class="omadused">
+        <dt>Valem</dt>
+        <dd>Võrdus, mille kohaselt saab argumendi <span class="tex">x</span> väärtusele arvutada
+            <span class="tex">y</span> väärtuse; valemist näeb, milliseid tehteid ja mis järjekorras teha.</dd>
+        <dt>Tabel</dt>
+        <dd>Ühes reas argumendi väärtused, teises vastavad funktsiooni väärtused. Nii esitatakse tavaliselt
+            katsetulemusi, mille põhjal otsitakse (ligikaudset) valemit.</dd>
+        <dt>Graafik</dt>
+        <dd>Joon, mille võrrand on <span class="tex">y = f(x)</span>. Graafikuks sobib vaid joon, mille korral igale
+            <span class="tex">x</span> väärtusele vastab ainult üks punkt. Annab funktsioonist piltliku ülevaate.</dd>
+    </dl>
+
+    <p class="naide-pealkiri">Näide – lineaarfunktsioon <span class="tex">y = 3x + 1</span> tabelina</p>
+    <div class="margitabel">
+        <table>
+            <tr><th>x</th><td>−3</td><td>−2</td><td>−1</td><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+            <tr><th>y</th><td>−8</td><td>−5</td><td>−2</td><td>1</td><td>4</td><td>7</td><td>10</td></tr>
+        </table>
+    </div>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="3*x + 1">Proovi: y = 3x + 1</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="-0.5*x^2 + 0.5">Proovi: y = −0,5x² + 0,5</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="3/x">Proovi: y = 3/x</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t4">
+    <h2><span class="teema-nr">4</span> Määramis- ja muutumispiirkond</h2>
+    <p class="maaratlus"><b>Määramispiirkond</b> <span class="tex">X</span> – kõik need muutuja
+        <span class="tex">x</span> väärtused, mille korral saab funktsiooni väärtust leida.</p>
+    <p class="maaratlus"><b>Muutumispiirkond</b> <span class="tex">Y</span> – funktsiooni väärtused, mis vastavad kõigile
+        argumendi väärtustele piirkonnas <span class="tex">X</span>.</p>
+    <p>Määramispiirkonda leides jäetakse välja need <span class="tex">x</span> väärtused, mille korral funktsiooni väärtust
+        leida ei saa:</p>
+    <ol>
+        <li>Murru nimetaja ei tohi olla null: <span class="tex">y = \frac{f(x)}{g(x)} \;\Rightarrow\; g(x) \ne 0</span>.</li>
+        <li>Ruutjuure alune avaldis peab olema mittenegatiivne: <span class="tex">y = \sqrt{f(x)} \;\Rightarrow\; f(x) \ge 0</span>.</li>
+    </ol>
+    <p class="naide-pealkiri">Näited</p>
+    <ul>
+        <li><span class="tex">f(x) = 2x - 1</span>: <span class="tex">X = \mathbb{R}</span>, <span class="tex">Y = \mathbb{R}</span>.</li>
+        <li><span class="tex">y = \frac{5}{x}</span>: kui <span class="tex">x = 0</span>, pole <span class="tex">y</span>
+            arvutatav, seega <span class="tex">X = (-\infty;\,0) \cup (0;\,\infty)</span>.</li>
+        <li><span class="tex">y = \sqrt{x - 8}</span>: peab kehtima <span class="tex">x - 8 \ge 0</span>, seega
+            <span class="tex">X = [8;\,\infty)</span>.</li>
+        <li>Jada on funktsioon, mille määramispiirkonnaks on positiivsete naturaalarvude hulk.</li>
+    </ul>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="5/x">Proovi: y = 5/x</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="sqrt(x - 8)">Proovi: y = √(x − 8)</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t5">
+    <h2><span class="teema-nr">5</span> Paaris ja paaritu funktsioon</h2>
+    <p class="maaratlus"><b>Paarisfunktsioon:</b> <span class="tex">f(-x) = f(x)</span> iga <span class="tex">x</span> korral.
+        Graafik on sümmeetriline <b>y-telje</b> suhtes.</p>
+    <p>Näide: <span class="tex">f(x) = 3x^2</span>. Punktid <span class="tex">A(-1;\,3)</span> ja
+        <span class="tex">B(1;\,3)</span> on sümmeetrilised y-telje suhtes ning
+        <span class="tex">f(-x) = 3(-x)^2 = 3x^2 = f(x)</span> – paarisfunktsioon.</p>
+    <p class="maaratlus"><b>Paaritu funktsioon:</b> <span class="tex">f(-x) = -f(x)</span> iga <span class="tex">x</span> korral.
+        Graafik on sümmeetriline <b>koordinaatide alguspunkti</b> suhtes.</p>
+    <p>Näide: <span class="tex">f(x) = x^3 + x</span>. Punktid <span class="tex">A(-1;\,-2)</span> ja
+        <span class="tex">B(1;\,2)</span> on sümmeetrilised alguspunkti suhtes ning</p>
+    <div class="tex blokk">f(-x) = (-x)^3 + (-x) = -x^3 - x = -(x^3 + x) = -f(x)</div>
+    <p>– paaritu funktsioon. Kui kumbki seos ei kehti (nt <span class="tex">y = x^2 + 3x</span>), pole funktsioon paaris
+        ega paaritu.</p>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="3*x^2">Proovi: y = 3x²</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^3 + x">Proovi: y = x³ + x</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t6">
+    <h2><span class="teema-nr">6</span> Nullkohad, positiivsus- ja negatiivsuspiirkond</h2>
+    <p class="maaratlus"><b>Nullkohad</b> <span class="tex">X_0</span> – argumendi väärtused, mille korral funktsiooni
+        väärtus on 0. Leidmiseks lahenda võrrand <span class="tex">f(x) = 0</span>. Graafikul on need graafiku lõike- või
+        puutekohad x-teljega.</p>
+    <p class="maaratlus"><b>Positiivsuspiirkond</b> <span class="tex">X^+</span> – kus <span class="tex">f(x) &gt; 0</span>
+        (graafik on ülalpool x-telge). <b>Negatiivsuspiirkond</b> <span class="tex">X^-</span> – kus
+        <span class="tex">f(x) &lt; 0</span> (graafik on allpool x-telge).</p>
+
+    <p class="naide-pealkiri">Näide: <span class="tex">y = x^4 - 5x^2 + 4</span></p>
+    <ol class="sammud">
+        <li class="samm"><p>Lahendame <span class="tex">x^4 - 5x^2 + 4 = 0</span>. Tähistame <span class="tex">x^2 = u</span>:
+            <span class="tex">u^2 - 5u + 4 = 0</span>, siit <span class="tex">u = 4</span> või <span class="tex">u = 1</span>.</p></li>
+        <li class="samm"><p><span class="tex">x^2 = 4 \Rightarrow x = \pm 2</span>; <span class="tex">x^2 = 1 \Rightarrow x = \pm 1</span>.</p></li>
+        <li class="samm vastus"><p><span class="tex">X_0 = \{-2;\,-1;\,1;\,2\}</span>,
+            <span class="tex">X^+ = (-\infty;\,-2) \cup (-1;\,1) \cup (2;\,\infty)</span>,
+            <span class="tex">X^- = (-2;\,-1) \cup (1;\,2)</span>.</p></li>
+    </ol>
+    <p>Kohal, kus graafik x-telge ainult <b>puutub</b>, on funktsioonil kahekordne nullkoht. Nullkohtade järgi saab
+        avaldise esitada teguriteks, nt
+        <span class="tex">x^4 + 4x^3 + 3x^2 - 4x - 4 = (x + 2)^2(x + 1)(x - 1)</span> – kohal
+        <span class="tex">x = -2</span> graafik puutub x-telge ja märk ei muutu.</p>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^4 - 5*x^2 + 4">Proovi: y = x⁴ − 5x² + 4</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^4 + 4*x^3 + 3*x^2 - 4*x - 4">Proovi: kahekordne nullkoht</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t7">
+    <h2><span class="teema-nr">7</span> Kasvamine ja kahanemine. Ekstreemumkohad</h2>
+    <p class="maaratlus"><b>Kasvamispiirkond</b> <span class="tex">X\!\uparrow</span> – <span class="tex">x</span> väärtused,
+        mille korral argumendi suurenedes ka funktsiooni väärtused suurenevad (graafik on tõusev joon).</p>
+    <p class="maaratlus"><b>Kahanemispiirkond</b> <span class="tex">X\!\downarrow</span> – argumendi suurenedes funktsiooni
+        väärtused vähenevad (graafik on langev joon).</p>
+    <p class="maaratlus"><b>Ekstreemumkohad</b> <span class="tex">X_e</span> – argumendi väärtused, mille korral funktsiooni
+        väärtus on suurem või väiksem kui naaberväärtused. Neile vastavad funktsiooni väärtused on <b>ekstreemumid</b>.</p>
+    <ul>
+        <li><b>Maksimumkoht</b> <span class="tex">x_{\max}</span> – kasvamine läheb üle kahanemiseks.</li>
+        <li><b>Miinimumkoht</b> <span class="tex">x_{\min}</span> – kahanemine läheb üle kasvamiseks.</li>
+    </ul>
+    <p class="naide-pealkiri">Näide: <span class="tex">f(x) = x^4 + 4x^3 + 3x^2 - 4x - 4</span> (väärtused graafikult, ligikaudu)</p>
+    <ul>
+        <li><span class="tex">X\!\uparrow = (-2;\,-1{,}4) \cup (0{,}4;\,\infty)</span>,
+            <span class="tex">X\!\downarrow = (-\infty;\,-2) \cup (-1{,}4;\,0{,}4)</span></li>
+        <li><span class="tex">X_e = \{-2;\,-1{,}4;\,0{,}4\}</span>: miinimumkohad <span class="tex">x_{\min} = -2</span>
+            (<span class="tex">y_{\min} = 0</span>) ja <span class="tex">x_{\min} \approx 0{,}4</span>
+            (<span class="tex">y_{\min} \approx -4{,}8</span>), maksimumkoht <span class="tex">x_{\max} \approx -1{,}4</span>
+            (<span class="tex">y_{\max} \approx 0{,}35</span>).</li>
+    </ul>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^4 + 4*x^3 + 3*x^2 - 4*x - 4">Proovi seda funktsiooni</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t8">
+    <h2><span class="teema-nr">8</span> Funktsiooni uurimine</h2>
+    <p>Funktsiooni uurimise kava:</p>
+    <ol>
+        <li><b>Määramispiirkond</b> <span class="tex">X</span> – kus <span class="tex">f(x)</span> on leitav.</li>
+        <li><b>Muutumispiirkond</b> <span class="tex">Y</span> – funktsiooni väärtuste hulk.</li>
+        <li><b>Nullkohad</b> <span class="tex">X_0 = \{x_1;\,\dots;\,x_n\}</span> – lahenda <span class="tex">f(x) = 0</span>.</li>
+        <li><b>Positiivsus- ja negatiivsuspiirkond</b> <span class="tex">X^+</span>, <span class="tex">X^-</span> –
+            lahenda <span class="tex">f(x) &gt; 0</span> ja <span class="tex">f(x) &lt; 0</span>.</li>
+        <li><b>Kasvamine ja kahanemine:</b> vahemikus <span class="tex">(a;\,b)</span> kasvav, kui
+            <span class="tex">x_2 &gt; x_1 \Rightarrow f(x_2) &gt; f(x_1)</span> (<span class="tex">X\!\uparrow</span>), kahanev, kui
+            <span class="tex">x_2 &gt; x_1 \Rightarrow f(x_2) &lt; f(x_1)</span> (<span class="tex">X\!\downarrow</span>).</li>
+        <li><b>Ekstreemumkohad</b> <span class="tex">X_e</span> (maksimum- ja miinimumkohad).</li>
+        <li><b>Paarsus:</b> paaris, kui <span class="tex">f(-x) = f(x)</span> (sümmeetria y-telje suhtes); paaritu, kui
+            <span class="tex">f(-x) = -f(x)</span> (sümmeetria alguspunkti suhtes).</li>
+        <li><b>Perioodilisus:</b> <span class="tex">f(x + T) = f(x)</span>, kus <span class="tex">T</span> on periood.</li>
+    </ol>
+    <p class="naide-pealkiri">Näide: <span class="tex">y = x^2 - 4</span></p>
+    <ol class="sammud">
+        <li class="samm"><p>Määramispiirkond <span class="tex">X = (-\infty;\,\infty)</span>.</p></li>
+        <li class="samm"><p>Nullkohad: <span class="tex">x^2 - 4 = 0 \Rightarrow x^2 = 4</span>, seega
+            <span class="tex">X_0 = \{-2;\,2\}</span>.</p></li>
+        <li class="samm"><p><span class="tex">x^2 - 4 &gt; 0 \Leftrightarrow (x - 2)(x + 2) &gt; 0</span>:
+            <span class="tex">X^+ = (-\infty;\,-2) \cup (2;\,\infty)</span>, <span class="tex">X^- = (-2;\,2)</span>.</p></li>
+        <li class="samm"><p>Parabooli haripunkti abstsiss <span class="tex">x_h = -\frac{0}{2\cdot 1} = 0</span>, seega
+            <span class="tex">X\!\uparrow = (0;\,\infty)</span> ja <span class="tex">X\!\downarrow = (-\infty;\,0)</span>.</p></li>
+        <li class="samm vastus"><p>Kohal <span class="tex">x = 0</span> läheb kahanemine üle kasvamiseks:
+            <span class="tex">x_{\min} = 0</span>, <span class="tex">y_{\min} = 0^2 - 4 = -4</span>, miinimumpunkt
+            <span class="tex">E_{\min}(0;\,-4)</span>. Funktsioon on paaris.</p></li>
+    </ol>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^2 - 4">Proovi: y = x² − 4</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^5 - 2*x^4 - 3*x^3 + 8*x^2 - 4*x">Proovi: y = x⁵ − 2x⁴ − 3x³ + 8x² − 4x</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t9">
+    <h2><span class="teema-nr">9</span> Tuletise mõiste, leidmine ja kasutamine</h2>
+    <p class="maaratlus"><b>Definitsioon.</b> Funktsiooni <span class="tex">y = f(x)</span> tuletis kohal
+        <span class="tex">x</span> näitab funktsiooni muutumise kiirust selles punktis:</p>
+    <div class="tex blokk">f'(x) = \lim_{\Delta x \to 0} \frac{f(x + \Delta x) - f(x)}{\Delta x}</div>
+
+    <div class="kaks-veergu">
+        <div>
+            <h3>Põhivalemid</h3>
+            <ul class="valemiloend">
+                <li><span class="tex">(c)' = 0</span> (c on konstant)</li>
+                <li><span class="tex">(x^n)' = n\cdot x^{n-1}</span></li>
+                <li><span class="tex">(\sqrt{x})' = \frac{1}{2\sqrt{x}}</span></li>
+                <li><span class="tex">(e^x)' = e^x</span>, <span class="tex">(\ln x)' = \frac{1}{x}</span></li>
+                <li><span class="tex">(\sin x)' = \cos x</span>, <span class="tex">(\cos x)' = -\sin x</span></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Arvutamise reeglid</h3>
+            <ul class="valemiloend">
+                <li>Summa/vahe: <span class="tex">(u \pm v)' = u' \pm v'</span></li>
+                <li>Korrutis: <span class="tex">(u\cdot v)' = u'v + uv'</span></li>
+                <li>Jagatis: <span class="tex">\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}</span></li>
+                <li>Liitfunktsioon: <span class="tex">\big(f(g(x))\big)' = f'(g(x))\cdot g'(x)</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <p class="naide-pealkiri">Näide: leia <span class="tex">y = \frac{2x + 1}{x - 3}</span> tuletis</p>
+    <ol class="sammud">
+        <li class="samm"><p><span class="tex">u = 2x + 1</span>, <span class="tex">v = x - 3</span>;
+            <span class="tex">u' = 2</span>, <span class="tex">v' = 1</span>.</p></li>
+        <li class="samm"><div class="tex blokk">y' = \frac{2(x - 3) - (2x + 1)\cdot 1}{(x - 3)^2} = \frac{2x - 6 - 2x - 1}{(x - 3)^2}</div></li>
+        <li class="samm vastus"><p><span class="tex">y' = -\frac{7}{(x - 3)^2}</span></p></li>
+    </ol>
+
+    <h3>Teine tuletis: kumerus, nõgusus ja käänupunktid</h3>
+    <p><span class="tex">f''(x) = \big(f'(x)\big)'</span>. Kui <span class="tex">f''(x) &gt; 0</span>, on graafik
+        <b>nõgus</b> (∪); kui <span class="tex">f''(x) &lt; 0</span>, on graafik <b>kumer</b> (∩). Punkt, kus teise tuletise
+        märk muutub, on <b>käänupunkt</b>.</p>
+    <p>Näide: <span class="tex">y = x^4 - 4x^3 + 6x</span>, <span class="tex">y'' = 12x^2 - 24x = 12x(x - 2)</span>.
+        Nõgus vahemikes <span class="tex">(-\infty;\,0)</span> ja <span class="tex">(2;\,\infty)</span>, kumer vahemikus
+        <span class="tex">(0;\,2)</span>; käänupunktid <span class="tex">K_1(0;\,0)</span> ja <span class="tex">K_2(2;\,-4)</span>.</p>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="(2*x + 1)/(x - 3)">Proovi: y = (2x + 1)/(x − 3)</a>
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^4 - 4*x^3 + 6*x">Proovi: y = x⁴ − 4x³ + 6x</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t10">
+    <h2><span class="teema-nr">10</span> Funktsiooni graafiku puutuja ja normaal</h2>
+    <p class="maaratlus"><b>Puutuja tõus.</b> Funktsiooni <span class="tex">y = f(x)</span> graafiku puutuja tõus kohal
+        <span class="tex">x_0</span> võrdub tuletisega selles punktis: <span class="tex">k = \tan\alpha = f'(x_0)</span>.</p>
+    <p><b>Puutuja võrrand</b> punktis <span class="tex">(x_0;\,y_0)</span>, kus <span class="tex">y_0 = f(x_0)</span>:</p>
+    <div class="tex blokk">y - y_0 = f'(x_0)(x - x_0)</div>
+    <p><b>Normaal</b> on sirge, mis on puutepunktis puutujaga risti (tõus <span class="tex">k_n = -\frac{1}{f'(x_0)}</span>):</p>
+    <div class="tex blokk">y - y_0 = -\frac{1}{f'(x_0)}(x - x_0)</div>
+
+    <p class="naide-pealkiri">Näide: <span class="tex">y = x^3 - 2x</span> puutuja kohal <span class="tex">x_0 = 1</span></p>
+    <ol class="sammud">
+        <li class="samm"><p><span class="tex">y_0 = 1^3 - 2\cdot 1 = -1</span>, puutepunkt <span class="tex">(1;\,-1)</span>.</p></li>
+        <li class="samm"><p><span class="tex">f'(x) = 3x^2 - 2</span>, <span class="tex">k = f'(1) = 3 - 2 = 1</span>.</p></li>
+        <li class="samm"><p><span class="tex">y - (-1) = 1\cdot(x - 1) \Rightarrow y + 1 = x - 1</span>.</p></li>
+        <li class="samm vastus"><p>Puutuja: <span class="tex">y = x - 2</span>; normaal: <span class="tex">y + 1 = -(x - 1)</span>
+            ehk <span class="tex">y = -x</span>.</p></li>
+    </ol>
+</section>
+
+<section class="kaart teema" id="t11">
+    <h2><span class="teema-nr">11</span> Funktsiooni uurimine tuletise abil</h2>
+    <ul>
+        <li>Kui piirkonnas <span class="tex">X</span> on <span class="tex">f'(x) &gt; 0</span>, siis funktsioon <b>kasvab</b>
+            (<span class="tex">X\!\uparrow</span>); kui <span class="tex">f'(x) &lt; 0</span>, siis <b>kahaneb</b>
+            (<span class="tex">X\!\downarrow</span>).</li>
+        <li><b>Kriitilised punktid</b> – kohad, kus <span class="tex">f'(x) = 0</span> või tuletist pole olemas.</li>
+        <li>Kui tuletise märk muutub kriitilises punktis <span class="tex">x_0</span> plussilt miinusele
+            (<span class="tex">+ \to -</span>), on see <b>maksimumkoht</b>; miinuselt plussile (<span class="tex">- \to +</span>)
+            – <b>miinimumkoht</b>.</li>
+        <li>Teine tuletis: <span class="tex">f''(x) &gt; 0</span> – nõgus (∪), <span class="tex">f''(x) &lt; 0</span> – kumer (∩);
+            märgimuutuse kohas (<span class="tex">f''(x) = 0</span>) on käänupunkt.</li>
+    </ul>
+
+    <p class="naide-pealkiri">Näide: <span class="tex">y = x^3 - 3x^2 - 9x + 5</span></p>
+    <ol class="sammud">
+        <li class="samm"><p>Tuletis: <span class="tex">y' = 3x^2 - 6x - 9</span>.</p></li>
+        <li class="samm"><p>Kriitilised punktid: <span class="tex">3x^2 - 6x - 9 = 0 \;\Big|:3\; \Rightarrow x^2 - 2x - 3 = 0</span>,
+            Vieta valemitega (<span class="tex">x_1 + x_2 = 2</span>, <span class="tex">x_1 x_2 = -3</span>):
+            <span class="tex">x_1 = -1</span>, <span class="tex">x_2 = 3</span>.</p></li>
+        <li class="samm"><p>Märgid (intervallide meetod), <span class="tex">y' = 3(x + 1)(x - 3)</span>:</p>
+            <div class="margitabel">
+                <table>
+                    <tr><th>x</th><td>(−∞; −1)</td><td>−1</td><td>(−1; 3)</td><td>3</td><td>(3; ∞)</td></tr>
+                    <tr><th>y′</th><td>+</td><td>0</td><td>−</td><td>0</td><td>+</td></tr>
+                    <tr><th>y</th><td>↗</td><td>max</td><td>↘</td><td>min</td><td>↗</td></tr>
+                </table>
+            </div></li>
+        <li class="samm vastus"><p><span class="tex">X\!\uparrow = (-\infty;\,-1) \cup (3;\,\infty)</span>,
+            <span class="tex">X\!\downarrow = (-1;\,3)</span>; <span class="tex">x_{\max} = -1</span>
+            (<span class="tex">y_{\max} = 10</span>), <span class="tex">x_{\min} = 3</span>
+            (<span class="tex">y_{\min} = -22</span>).</p></li>
+    </ol>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="x^3 - 3*x^2 - 9*x + 5">Proovi: y = x³ − 3x² − 9x + 5</a>
+    </div>
+</section>
+
+<section class="kaart teema" id="t12">
+    <h2><span class="teema-nr">12</span> Ekstreemumülesanded (rakendusülesanded)</h2>
+    <p>Optimeerimisülesande lahendamise sammud:</p>
+    <ol>
+        <li>Vali suurus, mida optimeerida (pindala, ruumala, maksumus …), ja tähista see <span class="tex">f</span>.</li>
+        <li>Vali üks sõltumatu muutuja <span class="tex">x</span> ja avalda ülejäänud suurused selle kaudu.</li>
+        <li>Koosta funktsioon <span class="tex">f(x)</span> ja määra selle määramispiirkond.</li>
+        <li>Leia tuletis <span class="tex">f'(x)</span> ja lahenda <span class="tex">f'(x) = 0</span>.</li>
+        <li>Kontrolli, kas leitud kriitiline koht annab nõutud suurima või vähima väärtuse (nt teise tuletise märgi järgi).</li>
+    </ol>
+    <p class="naide-pealkiri">Näide: 40 cm pikkusest traadist painutatakse ristkülik. Millal on pindala suurim?</p>
+    <ol class="sammud">
+        <li class="samm"><p>Üks külg <span class="tex">x</span>; <span class="tex">2(x + y) = 40 \Rightarrow y = 20 - x</span>.</p></li>
+        <li class="samm"><p>Pindala <span class="tex">S(x) = x(20 - x) = 20x - x^2</span>, <span class="tex">x \in (0;\,20)</span>.</p></li>
+        <li class="samm"><p><span class="tex">S'(x) = 20 - 2x = 0 \Rightarrow x = 10</span>.</p></li>
+        <li class="samm"><p><span class="tex">S''(x) = -2 &lt; 0</span> – tegemist on maksimumkohaga.</p></li>
+        <li class="samm vastus"><p><span class="tex">y = 20 - 10 = 10</span>: ristkülik peab olema ruut
+            <span class="tex">10 \times 10</span> cm (pindala <span class="tex">100\ \text{cm}^2</span>).</p></li>
+    </ol>
+    <div class="nupud">
+        <a class="nupp" asp-controller="Funktsioonid" asp-action="Create" asp-route-valem="20*x - x^2">Proovi: S(x) = 20x − x²</a>
+    </div>
+</section>
+
+</div>
+
+@section Skriptid {
+    <script>
+        // Teooria valemid KaTeXiga; kui KaTeX ei laadinud, jääb LaTeX tekstina nähtavaks.
+        document.querySelectorAll('.tex').forEach((el) => {
+            try {
+                katex.render(el.textContent, el, { displayMode: el.classList.contains('blokk'), throwOnError: false });
+            } catch { el.classList.add('valem-tekstina'); }
+        });
+    </script>
+}

@@ -1,0 +1,20 @@
+@model FunktsiooniVorm
+@{
+    ViewData["Title"] = "Uus funktsioon";
+}
+
+<h1>Uus funktsioon</h1>
+
+<form asp-action="Create" method="post" class="kaart">
+    <partial name="_ValemiVali" model="Model" />
+    <div class="nupud">
+        <button type="submit" class="nupp esmane">Analüüsi ja salvesta</button>
+        <a class="nupp" asp-action="Index">Tühista</a>
+    </div>
+</form>
+
+<h2>Eelvaade</h2>
+<partial name="_Graafik" model="new GraafikuSeaded(null, nameof(FunktsiooniVorm.Valem))" />
+
+<h2>Vastused</h2>
+<partial name="_Vastused" model="new VastusteSeaded(null)" />

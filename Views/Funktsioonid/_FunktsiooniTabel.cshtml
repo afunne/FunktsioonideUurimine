@@ -1,0 +1,30 @@
+@model List<FunktsiooniUurimine>
+
+<div class="tabel">
+<table>
+    <thead>
+        <tr>
+            <th>f(x)</th>
+            <th class="lai">f'(x)</th>
+            <th class="lai">Ekstreemumid</th>
+            <th class="lai">Loodud</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var funktsioon in Model)
+        {
+            <tr>
+                <td><a asp-action="Details" asp-route-id="@funktsioon.Id"><code data-ilus-valem>@funktsioon.Valem</code></a></td>
+                <td class="lai"><code data-ilus-valem>@funktsioon.Tuletis</code></td>
+                <td class="lai">@funktsioon.Ekstreemumid</td>
+                <td class="lai vaike">@funktsioon.LuodudAeg.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                <td class="toimingud">
+                    <a asp-action="Edit" asp-route-id="@funktsioon.Id">Muuda</a>
+                    <a asp-action="Delete" asp-route-id="@funktsioon.Id">Kustuta</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,22 @@
+@model FunktsiooniVorm
+@{
+    ViewData["Title"] = "Muuda funktsiooni";
+}
+
+<h1>Muuda funktsiooni</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post" class="kaart">
+    <input type="hidden" asp-for="Id" />
+    <partial name="_ValemiVali" model="Model" />
+    <p class="vaike">Salvestamisel arvutatakse kõik vastused uuesti.</p>
+    <div class="nupud">
+        <button type="submit" class="nupp esmane">Salvesta</button>
+        <a class="nupp" asp-action="Details" asp-route-id="@Model.Id">Tühista</a>
+    </div>
+</form>
+
+<h2>Eelvaade</h2>
+<partial name="_Graafik" model="new GraafikuSeaded(null, nameof(FunktsiooniVorm.Valem))" />
+
+<h2>Vastused</h2>
+<partial name="_Vastused" model="new VastusteSeaded(null)" />

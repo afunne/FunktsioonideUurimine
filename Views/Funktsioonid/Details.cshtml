@@ -1,0 +1,18 @@
+@model FunktsiooniUurimine
+@{
+    ViewData["Title"] = Model.Valem;
+}
+
+<h1>f(x) = <code data-ilus-valem>@Model.Valem</code></h1>
+<p><a class="filter" asp-action="Index" asp-route-liik="@Model.Liik">@FunktsiooniLiigid.Nimi(Model.Liik)</a></p>
+
+<partial name="_Graafik" model="new GraafikuSeaded(Model.Valem, null)" />
+
+<h2>Vastused</h2>
+<partial name="_Vastused" model="new VastusteSeaded(Model)" />
+
+<div class="nupud">
+    <a class="nupp" asp-action="Edit" asp-route-id="@Model.Id">Muuda</a>
+    <a class="nupp" asp-action="Delete" asp-route-id="@Model.Id">Kustuta</a>
+    <a class="nupp" asp-action="Index">Tagasi</a>
+</div>

@@ -1,0 +1,92 @@
+@model FunktsiooniVorm
+@{
+    const string MathLive = "https://cdn.jsdelivr.net/npm/mathlive@0.111.0";
+}
+
+<div asp-validation-summary="ModelOnly" class="viga"></div>
+<label class="silt" asp-for="Valem"></label>
+
+@* Visuaalne valemiväli ja klaviatuur (MathLive); sünkroonis allpool oleva tekstiväljaga – loogika: valemiklaviatuur.js *@
+<div class="valemiredaktor" data-valemiredaktor data-sisend="@Html.IdFor(m => m.Valem)"
+     data-fondid="@MathLive/fonts" hidden>
+    @* Lülitid: visuaalne valemiväli ja klaviatuur sisse/välja (valik jäetakse meelde) *@
+    <div class="lylitid" data-lylitid>
+        <label class="lyliti">
+            <input type="checkbox" role="switch" data-seade="visuaalne" checked />
+            <span>Visuaalne valemiväli <span class="vaike">(x², murd, √)</span></span>
+        </label>
+        <label class="lyliti">
+            <input type="checkbox" role="switch" data-seade="klaviatuur" checked />
+            <span>Klaviatuur <span class="vaike">(▢², ▢ⁿ, numbrid)</span></span>
+        </label>
+    </div>
+
+    @* <math-field> luuakse skriptis (lülitite järele), et fondikaust oleks enne määratud *@
+
+    <div class="klaviatuur" role="toolbar" aria-label="Valemi klaviatuur">
+        <div class="klahvirida">
+            <button type="button" class="klahv mall" data-sisesta="#@@^{2}" title="Ruut (x²)">▢<sup>2</sup></button>
+            <button type="button" class="klahv mall" data-sisesta="#@@^{#?}" title="Aste (xⁿ)">▢<sup>▢</sup></button>
+            <button type="button" class="klahv mall" data-sisesta="\frac{#@@}{#?}" title="Murd">
+                <span class="murd"><span>▢</span><span>▢</span></span>
+            </button>
+            <button type="button" class="klahv mall" data-sisesta="\sqrt{#0}" title="Ruutjuur">√▢</button>
+            <button type="button" class="klahv mall" data-sisesta="\sqrt[#?]{#0}" title="n-es juur"><sup>n</sup>√▢</button>
+            <button type="button" class="klahv mall" data-sisesta="\left(#0\right)" title="Sulud">(▢)</button>
+            <button type="button" class="klahv mall" data-sisesta="e^{#0}" title="eˣ">e<sup>▢</sup></button>
+        </div>
+        <div class="klahvirida">
+            <button type="button" class="klahv" data-sisesta="\sin\left(#0\right)">sin</button>
+            <button type="button" class="klahv" data-sisesta="\cos\left(#0\right)">cos</button>
+            <button type="button" class="klahv" data-sisesta="\tan\left(#0\right)">tan</button>
+            <button type="button" class="klahv" data-sisesta="\ln\left(#0\right)">ln</button>
+            <button type="button" class="klahv" data-sisesta="\exp\left(#0\right)">exp</button>
+            <button type="button" class="klahv" data-sisesta="\pi">π</button>
+            <button type="button" class="klahv" data-sisesta="e">e</button>
+        </div>
+        <div class="klahvirida numbrid">
+            @* Kalkulaatori paigutus: 7 8 9 + / 4 5 6 − / 1 2 3 × / 0 . x ÷ *@
+            @foreach (var klahv in new[] { "7", "8", "9" })
+            {
+                <button type="button" class="klahv" data-sisesta="@klahv">@klahv</button>
+            }
+            <button type="button" class="klahv tehe" data-sisesta="+">+</button>
+            @foreach (var klahv in new[] { "4", "5", "6" })
+            {
+                <button type="button" class="klahv" data-sisesta="@klahv">@klahv</button>
+            }
+            <button type="button" class="klahv tehe" data-sisesta="-">−</button>
+            @foreach (var klahv in new[] { "1", "2", "3" })
+            {
+                <button type="button" class="klahv" data-sisesta="@klahv">@klahv</button>
+            }
+            <button type="button" class="klahv tehe" data-sisesta="\cdot" title="Korrutamine">×</button>
+            <button type="button" class="klahv" data-sisesta="0">0</button>
+            <button type="button" class="klahv" data-sisesta=".">.</button>
+            <button type="button" class="klahv muutuja" data-sisesta="x"><i>x</i></button>
+            <button type="button" class="klahv tehe" data-sisesta="\frac{#@@}{#?}" title="Jagamine (murd)">÷</button>
+        </div>
+        <div class="klahvirida">
+            <button type="button" class="klahv" data-kask="moveToPreviousChar" title="Vasakule">←</button>
+            <button type="button" class="klahv" data-kask="moveToNextChar" title="Paremale">→</button>
+            <button type="button" class="klahv" data-kask="deleteBackward" title="Kustuta">⌫</button>
+            <button type="button" class="klahv" data-kask="tyhjenda" title="Tühjenda kogu valem">Tühjenda</button>
+        </div>
+    </div>
+    <p class="vaike" data-vihje>
+        Kirjuta valem ülal olevasse välja või kasuta klaviatuuri: <code>^</code> teeb astme, <code>/</code> murru,
+        nooleklahvid liiguvad kastide vahel.
+    </p>
+</div>
+
+<label class="silt vaike tekstisilt" data-tekstisilt for="@Html.IdFor(m => m.Valem)" hidden>Valem tekstina</label>
+<input asp-for="Valem" type="text" placeholder="nt x^3 - 3*x" autocomplete="off" spellcheck="false" />
+<span asp-validation-for="Valem" class="viga"></span>
+<p class="vaike">
+    Muutuja on <code>x</code>, tehted <code>+ - * / ^</code>.
+    Funktsioonid: <code>sin cos tan exp ln sqrt</code>, konstandid: <code>pi e</code>.
+    Tekstiväljas on korrutusmärk kohustuslik: <code>3*x</code>, mitte <code>3x</code>.
+</p>
+
+<script defer src="@MathLive/mathlive.min.js"></script>
+<script defer src="~/js/valemiklaviatuur.js" asp-append-version="true"></script>

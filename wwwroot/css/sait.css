@@ -1,0 +1,364 @@
+:root {
+    --tekst: #1f2937;
+    --hall: #6b7280;
+    --piir: #e5e7eb;
+    --sinine: #2563eb;
+    --punane: #dc2626;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--tekst);
+    background: #fff;
+    line-height: 1.5;
+}
+
+.konteiner { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+header { border-bottom: 1px solid var(--piir); }
+header .konteiner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+.logo { font-weight: 600; color: inherit; text-decoration: none; }
+nav a { margin-left: 20px; color: var(--hall); text-decoration: none; }
+nav a:hover { color: var(--tekst); }
+
+main.konteiner { padding-top: 28px; padding-bottom: 56px; }
+
+h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 20px; }
+h2 { font-size: 1.1rem; font-weight: 600; margin: 32px 0 12px; }
+a { color: var(--sinine); }
+
+code {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: .92em;
+    background: #f3f4f6;
+    padding: 1px 6px;
+    border-radius: 4px;
+}
+h1 code { font-size: .85em; }
+
+.pealkirja-rida { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.tabel { overflow-x: auto; }
+.pealkirja-rida h1 { margin: 0; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--piir); vertical-align: top; }
+th { font-size: .8rem; font-weight: 600; color: var(--hall); text-transform: uppercase; letter-spacing: .03em; }
+td code { white-space: nowrap; }
+td a { text-decoration: none; }
+td a code { color: var(--sinine); }
+.toimingud { white-space: nowrap; text-align: right; }
+.toimingud a { margin-left: 10px; font-size: .9rem; }
+
+.kaart { border: 1px solid var(--piir); border-radius: 8px; padding: 20px; }
+
+dl.omadused { display: grid; grid-template-columns: 170px 1fr; gap: 10px 16px; margin: 0; }
+dl.omadused dt { color: var(--hall); }
+dl.omadused dd { margin: 0; }
+
+.silt { display: block; font-weight: 600; margin-bottom: 6px; }
+input[type=text], input[type=number] {
+    font: inherit;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+input:focus { outline: 2px solid #bfdbfe; border-color: var(--sinine); }
+
+.nupp {
+    display: inline-block;
+    padding: 8px 16px;
+    font: inherit;
+    font-size: .95rem;
+    color: var(--tekst);
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.nupp:hover { background: #f9fafb; }
+.nupp.esmane { background: var(--sinine); border-color: var(--sinine); color: #fff; }
+.nupp.esmane:hover { background: #1d4ed8; }
+.nupp.oht { background: var(--punane); border-color: var(--punane); color: #fff; }
+.nupud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+.vaike { color: var(--hall); font-size: .88rem; }
+.viga { color: var(--punane); font-size: .9rem; }
+.viga:empty { display: none; }
+.viga ul { margin: 0 0 8px; padding-left: 18px; }
+.teade { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; padding: 10px 14px; border-radius: 6px; }
+
+.vahemik { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 10px; margin-bottom: 14px; }
+.vahemik label { font-size: .85rem; color: var(--hall); }
+.vahemik input { display: block; width: 90px; margin-top: 2px; }
+.graafik { position: relative; height: 440px; }
+
+h3 { font-size: 1rem; font-weight: 600; margin: 0 0 14px; }
+.vastused { display: grid; gap: 16px; }
+.vastused dl.omadused { grid-template-columns: 250px 1fr; }
+.vastused dd { overflow-wrap: anywhere; }
+
+/* Suumitav graafik */
+.graafik canvas { cursor: grab; }
+.graafik canvas:active { cursor: grabbing; }
+.suuminupud { display: inline-flex; }
+.suuminupud .nupp { min-width: 40px; padding-left: 0; padding-right: 0; font-weight: 600; }
+.suuminupud .nupp:first-child { border-radius: 6px 0 0 6px; }
+.suuminupud .nupp:last-child { border-radius: 0 6px 6px 0; border-left: 0; }
+
+/* Funktsiooni liigid: filtrinupud ja rühmad nimekirjas */
+.filtrid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-size: .88rem;
+    color: var(--tekst);
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    text-decoration: none;
+}
+.filter:hover { background: #f9fafb; }
+.filter.valitud { background: var(--sinine); border-color: var(--sinine); color: #fff; }
+.arv { font-size: .78rem; font-weight: 600; color: var(--hall); background: #f3f4f6; border-radius: 999px; padding: 0 7px; }
+.filter.valitud .arv { color: var(--sinine); background: #fff; }
+.liigiruhm h2 { display: flex; align-items: center; gap: 8px; }
+
+/* Visuaalne valemiväli (MathLive) ja valemi klaviatuur */
+.valemiredaktor { margin-bottom: 14px; }
+.valemivali {
+    display: block;
+    width: 100%;
+    min-height: 56px;
+    padding: 8px 12px;
+    font-size: 1.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    --selection-background-color: #bfdbfe;
+    --selection-color: var(--tekst);
+    --contains-highlight-background-color: #eff6ff;
+    --caret-color: var(--sinine);
+    --primary: var(--sinine);
+}
+.valemivali:focus-within { outline: 2px solid #bfdbfe; border-color: var(--sinine); }
+.valemivali::part(virtual-keyboard-toggle),
+.valemivali::part(menu-toggle) { display: none; }
+
+.klaviatuur {
+    display: grid;
+    gap: 6px;
+    margin-top: 8px;
+    padding: 8px;
+    background: #f9fafb;
+    border: 1px solid var(--piir);
+    border-radius: 8px;
+}
+.klahvirida { display: flex; flex-wrap: wrap; gap: 6px; }
+.klahv {
+    min-width: 44px;
+    height: 40px;
+    padding: 0 10px;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--tekst);
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.klahv:hover { background: #eff6ff; border-color: #93c5fd; }
+.klahv:active { background: #dbeafe; }
+.klahv sup { font-size: .65em; margin-left: 1px; align-self: flex-start; margin-top: 6px; }   /* flex-elemendis ei tööta vertical-align */
+.klahvirida.numbrid { display: grid; grid-template-columns: repeat(4, 56px); }
+.klahv.mall { font-family: "Times New Roman", serif; font-size: 1.1rem; }
+.klahv.tehe { background: #f3f4f6; font-weight: 600; }
+.klahv.muutuja { font-family: "Times New Roman", serif; font-size: 1.15rem; }
+.murd { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; font-size: .8em; }
+.murd > span + span { border-top: 1.5px solid currentColor; padding-top: 1px; margin-top: 1px; }
+.tekstisilt { font-weight: 400; margin-top: 4px; }
+
+/* Lahenduskäigud vastuste juures (lahendused.js) */
+.lahendusnupp {
+    margin-left: 8px;
+    padding: 1px 10px;
+    font: inherit;
+    font-size: .8rem;
+    color: var(--sinine);
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    cursor: pointer;
+    vertical-align: 1px;
+    white-space: nowrap;
+}
+.lahendusnupp:hover { background: #dbeafe; }
+.lahendusnupp.avatud { color: #fff; background: var(--sinine); border-color: var(--sinine); }
+
+.vastused dd.lahendus {
+    grid-column: 1 / -1;
+    margin: 0 0 6px;
+    padding: 14px 16px;
+    background: #f8fafc;
+    border: 1px solid var(--piir);
+    border-left: 3px solid var(--sinine);
+    border-radius: 8px;
+    overflow-wrap: normal;
+    min-width: 0;
+}
+.viisid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.viis {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+    padding: 6px 12px;
+    font: inherit;
+    font-size: .88rem;
+    color: var(--tekst);
+    text-align: left;
+    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.viis:hover { border-color: #93c5fd; }
+.viis[aria-selected="true"] { background: #eff6ff; border-color: var(--sinine); box-shadow: inset 0 0 0 1px var(--sinine); }
+.viisi-nr { font-size: .72rem; font-weight: 600; color: var(--hall); text-transform: uppercase; letter-spacing: .04em; }
+.viisi-pealkiri { font-size: .78rem; font-weight: 600; color: var(--hall); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 10px; }
+
+ol.sammud { list-style: none; margin: 0; padding: 0; counter-reset: samm; }
+.samm { position: relative; counter-increment: samm; padding-left: 34px; margin-bottom: 12px; }
+.samm::before {
+    content: counter(samm);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 22px;
+    height: 22px;
+    font-size: .75rem;
+    font-weight: 600;
+    line-height: 22px;
+    text-align: center;
+    color: var(--sinine);
+    background: #dbeafe;
+    border-radius: 50%;
+}
+.samm p { margin: 0 0 2px; }
+.samm.vastus { padding: 8px 12px 8px 42px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; }
+.samm.vastus::before { left: 10px; top: 9px; color: #fff; background: #16a34a; content: "✓"; }
+.valem { position: relative; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+.valem .katex-display { margin: .35em 0; text-align: left; }
+.valem .katex-display > .katex { text-align: left; }
+.valem-tekstina { font-family: ui-monospace, Consolas, monospace; font-size: .9em; }
+
+.margitabel { position: relative; overflow-x: auto; margin: 6px 0 2px; }
+.margitabel table { width: auto; border-collapse: collapse; background: #fff; }
+.margitabel th, .margitabel td { padding: 6px 12px; border: 1px solid var(--piir); font-size: .9rem; white-space: nowrap; vertical-align: middle; }
+.margitabel th { font-size: .78rem; color: var(--hall); text-transform: none; letter-spacing: 0; background: #f3f4f6; }
+.lahendusjoonis { position: relative; max-width: 520px; height: 220px; margin: 8px 0 6px; padding: 6px; background: #fff; border: 1px solid var(--piir); border-radius: 6px; }
+
+/* Lülitid (vastuste kuju, valemiväli ja klaviatuur); valik jäetakse brauserisse meelde */
+.lylitid { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 10px; }
+.lyliti { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; cursor: pointer; user-select: none; }
+.lyliti .vaike { font-size: .8rem; }
+.lyliti input {
+    appearance: none;
+    flex: none;
+    position: relative;
+    width: 36px;
+    height: 20px;
+    margin: 0;
+    background: #d1d5db;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s;
+}
+.lyliti input::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .25);
+    transition: transform .15s;
+}
+.lyliti input:checked { background: var(--sinine); }
+.lyliti input:checked::before { transform: translateX(16px); }
+.lyliti input:focus-visible { outline: 2px solid #bfdbfe; outline-offset: 2px; }
+.lyliti input:disabled { opacity: .45; cursor: not-allowed; }
+.lyliti:has(input:disabled) { color: var(--hall); cursor: not-allowed; }
+
+
+/* Päise lüliti „Ilus valem“ ja valemid matemaatikana (valemikuju.js) */
+nav .lyliti { margin-left: 20px; font-size: .85rem; color: var(--hall); vertical-align: middle; }
+code.valem-ilus { background: none; padding: 0; font-family: inherit; font-size: 1em; }
+h1 code.valem-ilus { font-size: 1em; }
+td code.valem-ilus .katex { font-size: 1.05em; }
+
+@media (max-width: 640px) {
+    dl.omadused, .vastused dl.omadused { grid-template-columns: 1fr; gap: 2px; }
+    dl.omadused dd { margin-bottom: 10px; }
+    .lai { display: none; }
+    .graafik { height: 300px; }
+    header .konteiner { flex-wrap: wrap; height: auto; min-height: 56px; padding-top: 8px; padding-bottom: 8px; gap: 4px 12px; }
+    nav { display: flex; align-items: center; white-space: nowrap; }
+    nav a, nav .lyliti { margin-left: 0; margin-right: 14px; }
+    .vastused dd.lahendus { padding: 12px; }
+    .samm { padding-left: 30px; }
+}
+
+/* Teooria leht (Views/Teooria/Index.cshtml) */
+.sisukord { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px; }
+.sisukord a {
+    margin: 0;
+    padding: 4px 12px;
+    font-size: .85rem;
+    color: var(--tekst);
+    text-decoration: none;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+}
+.sisukord a:hover { background: #eff6ff; border-color: #93c5fd; }
+.teemad { display: grid; gap: 20px; }
+.teema { scroll-margin-top: 16px; }
+.teema h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; }
+.teema h3 { margin: 20px 0 10px; }
+.teema-nr {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    font-size: .85rem;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    background: var(--sinine);
+    border-radius: 50%;
+}
+.teema ol, .teema ul { padding-left: 22px; }
+.teema li { margin-bottom: 4px; }
+.teema ol.sammud { padding-left: 0; }
+.teema dl.omadused { grid-template-columns: 90px 1fr; }
+.maaratlus { padding: 10px 14px; background: #eff6ff; border-left: 3px solid var(--sinine); border-radius: 6px; }
+.naide-pealkiri { margin: 20px 0 10px; font-weight: 600; }
+.tex.blokk { overflow-x: auto; overflow-y: hidden; }
+.kaks-veergu { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+ul.valemiloend { list-style: none; padding-left: 0; }
+ul.valemiloend li { margin-bottom: 8px; }
+
+@media (max-width: 640px) {
+    .kaks-veergu { grid-template-columns: 1fr; }
+    .teema dl.omadused { grid-template-columns: 1fr; }
+}

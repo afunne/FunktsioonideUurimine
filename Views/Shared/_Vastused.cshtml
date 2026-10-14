@@ -1,0 +1,34 @@
+@model VastusteSeaded
+@{
+    // Detailvaates näidatakse salvestatud vastuseid; eelvaates on väljad tühjad ja graafik.js täidab need.
+    // Lahenduskäigud (nupp „Lahendus“) tulevad graafiku päringuga ja need joonistab lahendused.js.
+    var vastused = Model.Olem is null ? null : Kysimused.Vastused(Model.Olem);
+}
+
+<div class="vastused" data-vastused>
+    @foreach (var ruhm in Kysimused.Koik.GroupBy(k => k.Ruhm))
+    {
+        <section class="kaart">
+            <h3>@ruhm.Key</h3>
+            <dl class="omadused">
+                @foreach (var kysimus in ruhm)
+                {
+                    var vastus = vastused?[kysimus.Voti];
+                    <dt>@kysimus.Silt</dt>
+                    <dd>
+                        @if (kysimus.OnValem)
+                        {
+                            <code data-vastus="@kysimus.Voti">@(vastus ?? "—")</code>
+                        }
+                        else
+                        {
+                            <span data-vastus="@kysimus.Voti">@(vastus ?? "—")</span>
+                        }
+                        <button type="button" class="lahendusnupp" data-lahendusnupp="@kysimus.Voti" aria-expanded="false" hidden>Lahendus</button>
+                    </dd>
+                    <dd class="lahendus" data-lahendus="@kysimus.Voti" hidden></dd>
+                }
+            </dl>
+        </section>
+    }
+</div>

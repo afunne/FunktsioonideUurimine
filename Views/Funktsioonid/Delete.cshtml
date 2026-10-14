@@ -1,0 +1,22 @@
+@model FunktsiooniUurimine
+@{
+    ViewData["Title"] = "Kustuta";
+}
+
+<h1>Kustuta funktsioon?</h1>
+
+<section class="kaart">
+    <dl class="omadused">
+        <dt>Valem</dt>
+        <dd><code>f(x) = @Model.Valem</code></dd>
+        <dt>Tuletis</dt>
+        <dd><code>f'(x) = @Model.Tuletis</code></dd>
+        <dt>Ekstreemumid</dt>
+        <dd>@Model.Ekstreemumid</dd>
+    </dl>
+</section>
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="nupud">
+    <button type="submit" class="nupp oht">Kustuta</button>
+    <a class="nupp" asp-action="Details" asp-route-id="@Model.Id">Tühista</a>
+</form>

@@ -1,0 +1,19 @@
+@model GraafikuSeaded
+
+<section class="kaart" data-graafik data-valem="@Model.Valem" data-sisend="@Model.SisendiId">
+    <div class="vahemik">
+        <label>x min <input type="number" name="xMin" value="-5" step="any" /></label>
+        <label>x max <input type="number" name="xMax" value="5" step="any" /></label>
+        <label>samm <input type="number" name="samm" value="0.1" step="any" min="0" /></label>
+        <button type="button" class="nupp" data-joonista>Joonista</button>
+        <span class="suuminupud">
+            <button type="button" class="nupp" data-suurenda title="Suurenda" aria-label="Suurenda">+</button>
+            <button type="button" class="nupp" data-vahenda title="Vähenda" aria-label="Vähenda">−</button>
+        </span>
+        <button type="button" class="nupp" data-sobita title="Vali vahemik, kus on näha nullkohad, ekstreemumid ja käänupunktid">Sobita</button>
+    </div>
+    <div class="graafik">
+        <canvas id="funktsiooniGraafik"></canvas>
+    </div>
+    <p class="viga" data-viga></p>
+</section>

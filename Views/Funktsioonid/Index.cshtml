@@ -1,0 +1,55 @@
+@model NimekirjaVaade
+@{
+    ViewData["Title"] = "Nimekiri";
+    // Ilma filtrita näidatakse iga liik eraldi rühmana; filtriga ainult valitud liik.
+    var ruhmad = FunktsiooniLiigid.Koik
+        .Select(l => (Liik: l, Funktsioonid: Model.Funktsioonid.Where(f => f.Liik == l.Voti).ToList()))
+        .Where(r => r.Funktsioonid.Count > 0)
+        .ToList();
+    var maaramata = Model.Funktsioonid.Where(f => FunktsiooniLiigid.Koik.All(l => l.Voti != f.Liik)).ToList();
+}
+
+<div class="pealkirja-rida">
+    <h1>Salvestatud funktsioonid</h1>
+    <a class="nupp esmane" asp-action="Create">+ Uus funktsioon</a>
+</div>
+
+@if (Model.KokkuArv == 0)
+{
+    <p class="vaike">Ühtegi funktsiooni pole veel salvestatud.</p>
+}
+else
+{
+    <nav class="filtrid" aria-label="Funktsiooni liik">
+        <a class="filter @(Model.ValitudLiik is null ? "valitud" : "")" asp-action="Index">
+            Kõik <span class="arv">@Model.KokkuArv</span>
+        </a>
+        @foreach (var filter in Model.Liigid)
+        {
+            <a class="filter @(Model.ValitudLiik == filter.Liik.Voti ? "valitud" : "")" asp-action="Index" asp-route-liik="@filter.Liik.Voti">
+                @filter.Liik.Nimi <span class="arv">@filter.Arv</span>
+            </a>
+        }
+    </nav>
+
+    @if (Model.Funktsioonid.Count == 0)
+    {
+        <p class="vaike">Selle liigi funktsioone pole. <a asp-action="Index">Näita kõiki</a></p>
+    }
+
+    @foreach (var ruhm in ruhmad)
+    {
+        <section class="liigiruhm">
+            <h2>@ruhm.Liik.Nimi <span class="arv">@ruhm.Funktsioonid.Count</span></h2>
+            <partial name="_FunktsiooniTabel" model="ruhm.Funktsioonid" />
+        </section>
+    }
+
+    @if (maaramata.Count > 0)
+    {
+        <section class="liigiruhm">
+            <h2>Määramata <span class="arv">@maaramata.Count</span></h2>
+            <partial name="_FunktsiooniTabel" model="maaramata" />
+        </section>
+    }
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] · Funktsioonide uurimine</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <link rel="stylesheet" href="~/css/sait.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="konteiner">
+            <a class="logo" asp-controller="Funktsioonid" asp-action="Index"><i>f</i>(x) Funktsioonide uurimine</a>
+            <nav>
+                @* Valemite kuju: matemaatikana (x³ − 3x) või kirjutatud kujul (x^3 - 3*x) – valemikuju.js *@
+                <label class="lyliti" title="Näita valemeid matemaatikana (x³ − 3x) või kirjutatud kujul (x^3 - 3*x)">
+                    <input type="checkbox" role="switch" data-valemikuju checked />
+                    <span>Ilus valem</span>
+                </label>
+                <a asp-controller="Funktsioonid" asp-action="Index">Nimekiri</a>
+                <a asp-controller="Funktsioonid" asp-action="Create">Uus</a>
+                <a asp-controller="Teooria" asp-action="Index">Teooria</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="konteiner">
+        @if (TempData["Teade"] is string teade)
+        {
+            <p class="teade">@teade</p>
+        }
+        @RenderBody()
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.2.0/dist/chartjs-plugin-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="~/js/valemiteisendus.js" asp-append-version="true"></script>
+    <script src="~/js/valemikuju.js" asp-append-version="true"></script>
+    <script src="~/js/lahendused.js" asp-append-version="true"></script>
+    <script src="~/js/graafik.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Skriptid", required: false)
+</body>
+</html>
